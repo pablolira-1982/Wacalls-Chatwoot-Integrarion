@@ -75,13 +75,13 @@ continua explícito como `501` até o adaptador de mensagens ser implementado.
 Depois de instalar e publicar o WaCalls, abra no Chatwoot como administrador:
 
 ```text
-https://URL_DO_CHATWOOT/super_admin/app_config?config=internal
+https://url_seu_chatwoot/super_admin/app_config?config=internal
 ```
 
 No campo **Dashboard Scripts**, coloque o widget hospedado pela aplicação WaCalls:
 
 ```html
-<script src="https://URL_DO_WACALLS/widget.js" data-api-key="SUA_WACALLS_API_KEY"></script>
+<script src="https://url_seu_wacalls/widget.js" data-api-key="SUA_WACALLS_API_KEY"></script>
 ```
 
 O arquivo é enviado em `client/public/widget.js` e, depois do build, fica disponível

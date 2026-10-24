@@ -76,7 +76,7 @@ export const SessionIntegrations = ({ sid }: { sid: string }) => {
     <Dialog open={open === "chatwoot"} onOpenChange={(v) => !v && setOpen(null)}>
       <DialogContent className="sm:max-w-xl"><DialogHeader><DialogTitle>Integração com Chatwoot</DialogTitle><DialogDescription>Conecte esta sessão a uma caixa de entrada API do Chatwoot.</DialogDescription></DialogHeader>
         <div className="space-y-3">
-          <div><Label>URL do Chatwoot</Label><Input className="mt-1" placeholder="https://SEU_DOMINIO_CHATWOOT" value={cfg.chatwoot.url} onChange={(e) => setCfg({ ...cfg, chatwoot: { ...cfg.chatwoot, url: e.target.value } })} /></div>
+          <div><Label>URL do Chatwoot</Label><Input className="mt-1" placeholder="https://url_seu_chatwoot" value={cfg.chatwoot.url} onChange={(e) => setCfg({ ...cfg, chatwoot: { ...cfg.chatwoot, url: e.target.value } })} /></div>
           <div className="grid grid-cols-2 gap-2"><div><Label>Account ID</Label><Input className="mt-1" value={cfg.chatwoot.account_id} onChange={(e) => setCfg({ ...cfg, chatwoot: { ...cfg.chatwoot, account_id: e.target.value } })} /></div><div><Label>Inbox ID</Label><Input className="mt-1" value={cfg.chatwoot.inbox_id} onChange={(e) => setCfg({ ...cfg, chatwoot: { ...cfg.chatwoot, inbox_id: e.target.value } })} /></div></div>
           <div><Label>Access Token</Label><Input className="mt-1" type="password" placeholder="deixe vazio para manter o atual" value={accessToken} onChange={(e) => setAccessToken(e.target.value)} /></div>
           <div><Label>Inbox Identifier</Label><Input className="mt-1" required value={cfg.chatwoot.inbox_identifier} onChange={(e) => setCfg({ ...cfg, chatwoot: { ...cfg.chatwoot, inbox_identifier: e.target.value } })} /></div>
