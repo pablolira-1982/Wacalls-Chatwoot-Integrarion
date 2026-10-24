@@ -84,12 +84,6 @@ No campo **Dashboard Scripts**, coloque o widget hospedado pela aplicação WaCa
 <script src="https://URL_DO_WACALLS/widget.js" data-api-key="SUA_WACALLS_API_KEY"></script>
 ```
 
-Exemplo:
-
-```html
-<script src="https://wa-calls.wacaller.net/widget.js" data-api-key="SUA_WACALLS_API_KEY"></script>
-```
-
 O arquivo é enviado em `client/public/widget.js` e, depois do build, fica disponível
 na raiz pública da aplicação. A chave deve ser colocada somente no Dashboard Script;
 ela nunca deve ser gravada no GitHub, no README ou no código-fonte.
