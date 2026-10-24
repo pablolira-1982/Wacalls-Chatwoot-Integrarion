@@ -37,6 +37,22 @@ execute o instalador apontando para a raiz do projeto oficial:
 node Wacalls-chatwoot-integration/install-integration.mjs --target .
 ```
 
+Durante a execução, o instalador pergunta:
+
+```text
+Qual é a URL do seu Chatwoot? Exemplo: chatwoot.net.br:
+```
+
+Se a pessoa informar `chatwoot.net.br`, o instalador grava automaticamente
+`https://chatwoot.net.br` no campo da integração. Em instalação automatizada, informe
+diretamente:
+
+```bash
+node Wacalls-chatwoot-integration/install-integration.mjs \
+  --target . \
+  --chatwoot-url chatwoot.net.br
+```
+
 O instalador trabalha somente com arquivos do projeto oficial. Ele não lê, cria ou
 publica `.env`, credenciais, tokens ou senhas.
 

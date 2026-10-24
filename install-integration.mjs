@@ -1,10 +1,28 @@
 #!/usr/bin/env node
 import fs from "node:fs";
 import path from "node:path";
+import readline from "node:readline/promises";
+import { stdin as input, stdout as output } from "node:process";
 
 const arg = process.argv.indexOf("--target");
 const target = path.resolve(arg >= 0 ? (process.argv[arg + 1] || ".") : ".");
 const packageRoot = path.dirname(new URL(import.meta.url).pathname);
+const urlArg = process.argv.indexOf("--chatwoot-url");
+
+const normalizeChatwootURL = (value) => {
+  let url = String(value || "").trim();
+  if (!url) return "https://url_seu_chatwoot";
+  if (!/^https?:\/\//i.test(url)) url = `https://${url}`;
+  return url.replace(/\/+$/, "");
+};
+
+let chatwootURL = urlArg >= 0 ? normalizeChatwootURL(process.argv[urlArg + 1]) : "";
+if (!chatwootURL && process.stdin.isTTY) {
+  const rl = readline.createInterface({ input, output });
+  chatwootURL = normalizeChatwootURL(await rl.question("Qual é a URL do seu Chatwoot? Exemplo: chatwoot.net.br: "));
+  rl.close();
+}
+if (!chatwootURL) chatwootURL = "https://url_seu_chatwoot";
 
 const copy = (relative) => {
   const from = path.join(packageRoot, "files", relative);
@@ -28,6 +46,8 @@ for (const file of [
   "client/src/services/integrations.ts",
   "client/public/widget.js",
 ]) copy(file);
+
+edit("client/src/components/domain/session/SessionIntegrations.tsx", (source) => source.replaceAll("https://url_seu_chatwoot", chatwootURL));
 
 edit("cmd/server/httpapi.go", (source) => {
   if (source.includes("s.handleIntegrationsGet")) return source;
@@ -73,4 +93,5 @@ edit("client/src/components/domain/call/Dialer.tsx", (source) => {
 });
 
 console.log(`Integração instalada em ${target}`);
+console.log(`URL do Chatwoot configurada: ${chatwootURL}`);
 console.log("Próximos passos: execute schema.sql, revise git diff, go test ./cmd/server e npm run build.");
