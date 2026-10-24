@@ -6,6 +6,7 @@ Pacote local, sem Supabase, sem `.env` e sem credenciais. Ele adiciona por inst�
 - popup Proxy com SOCKS5, HTTP e HTTPS;
 - popup Chatwoot com URL, Account ID, Inbox ID, Access Token, Inbox Identifier e webhook obrigatório copiável;
 - persistência no SQLite usado pelo WaCalls-dev.
+- `widget.js` para inserir o botão de chamada dentro do Chatwoot.
 
 ## Banco necessário
 
@@ -68,3 +69,27 @@ go build -o wacalls-server ./cmd/server
 O webhook é montado pelo host da requisição. Assim cada instalação mostra o próprio
 domínio, sem fixar o domínio WaCaller no código. O endpoint de transporte Chatwoot
 continua explícito como `501` até o adaptador de mensagens ser implementado.
+
+## Widget no Chatwoot
+
+Depois de instalar e publicar o WaCalls, abra no Chatwoot como administrador:
+
+```text
+https://URL_DO_CHATWOOT/super_admin/app_config?config=internal
+```
+
+No campo **Dashboard Scripts**, coloque o widget hospedado pela aplicação WaCalls:
+
+```html
+<script src="https://URL_DO_WACALLS/widget.js" data-api-key="SUA_WACALLS_API_KEY"></script>
+```
+
+Exemplo:
+
+```html
+<script src="https://wa-calls.wacaller.net/widget.js" data-api-key="SUA_WACALLS_API_KEY"></script>
+```
+
+O arquivo é enviado em `client/public/widget.js` e, depois do build, fica disponível
+na raiz pública da aplicação. A chave deve ser colocada somente no Dashboard Script;
+ela nunca deve ser gravada no GitHub, no README ou no código-fonte.

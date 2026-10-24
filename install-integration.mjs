@@ -26,6 +26,7 @@ for (const file of [
   "cmd/server/sessionstore.go",
   "client/src/components/domain/session/SessionIntegrations.tsx",
   "client/src/services/integrations.ts",
+  "client/public/widget.js",
 ]) copy(file);
 
 edit("cmd/server/httpapi.go", (source) => {
